@@ -1,6 +1,6 @@
 class SignupsController < ApplicationController
     def index
         signups = Signup.all
-        render json: signup
+        render json: signups
     end
 end
