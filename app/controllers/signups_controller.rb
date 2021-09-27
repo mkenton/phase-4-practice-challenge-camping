@@ -1,6 +1,12 @@
 class SignupsController < ApplicationController
-    def index
-        signups = Signup.all
-        render json: signups
+
+    def create
+        signup = Signup.create(params.permit(:camper_id, :activity_id, :time))
+        if signup.valid?
+            render json: signup.activity, status: :created
+        else
+            render json: { errors: ["validation errors"] }, status: :unprocessable_entity
+        end
     end
+
 end
